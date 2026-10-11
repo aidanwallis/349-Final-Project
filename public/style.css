@@ -1,3 +1,8 @@
+
+/*            */
+/* index.html */
+/*            */
+
 .ratings-boxes {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -44,6 +49,41 @@
 
 @media (max-width: 600px) {
     .ratings-boxes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*                 */
+/* add-rating.html */
+/*                 */
+
+.rating-textarea {
+    width: 50%;
+    height: 100px;
+}
+
+/*                      */
+/* recommendations.html */
+/*                      */
+
+.recommendations-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: calc(100% - 40px);
+    margin: 24px auto;
+}
+
+.recommendations-left,
+.recommendations-right {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Stack the sections on small screens */
+@media (max-width: 600px) {
+    .recommendations-layout {
         grid-template-columns: 1fr;
     }
 }
