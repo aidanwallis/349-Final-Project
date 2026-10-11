@@ -32,6 +32,16 @@
     margin-left: 16px;
 }
 
+.game-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-column {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
 @media (max-width: 600px) {
     .ratings-boxes {
         grid-template-columns: 1fr;
