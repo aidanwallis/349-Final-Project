@@ -10,18 +10,32 @@
     </head>
 
     <body>
-        <header>
+        <header style = "text-align: center;">
             <h1>Add Rating</h1>
         </header>
 
-        <nav>
+        <nav style = "text-align: center;">
             <a href="index.html">Home Page</a>
             <a href="add-rating.html">Add Rating Page</a>
             <a href="recommendations.html">Recommendations Page</a>
         </nav>
 
         <main>
+            <br><br>
+            <form>
+                <label for="game">Game title</label>
+                <input type="text" id="game" name="game" required>
 
+                <label for="rating">Your rating (1-10)</label>
+                <input type="number" id="rating" name="rating" min="1" max="10" required>
+
+                <br><br>
+                <label for="review">Review</label><br>
+                <textarea class="rating-textarea" id="review" name="review" maxlength="1000"></textarea>
+                
+                <br><br>
+                <button type="submit">Submit</button>
+            </form>
         </main>
 
         <footer>
