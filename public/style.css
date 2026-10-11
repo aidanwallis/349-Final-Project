@@ -14,6 +14,24 @@
     background-color: #fff;
 }
 
+.game-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.game-card img {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+}
+
+.game-info {
+    flex-grow: 3;
+    flex-basis: 0;
+    margin-left: 16px;
+}
+
 @media (max-width: 600px) {
     .ratings-boxes {
         grid-template-columns: 1fr;
