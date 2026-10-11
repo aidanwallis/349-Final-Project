@@ -1,0 +1,21 @@
+.ratings-boxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: calc(100% - 100px);
+    margin: 24px auto;
+}
+
+.rating-box {
+    min-height: 220px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+@media (max-width: 600px) {
+    .ratings-boxes {
+        grid-template-columns: 1fr;
+    }
+}
