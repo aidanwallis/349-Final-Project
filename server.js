@@ -4,6 +4,8 @@ const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { Server } = require('socket.io');
+const Rating = require('./models/Rating'); // Import the Rating model
+
 
 const app = express();
 const port = process.env.PORT || 3000;
