@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Steam Web API
 
+// Search for a game on Steam using the games name as a search term. 
+// Returns a list of games that match the search term.
 app.get('/api/storesearch', async (req, res) => {
     const term = req.query.term;
 
