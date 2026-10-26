@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // MongoDB Connection
 
 
-// Socekt.IO integration
+// Socket.IO integration
 
 
 
@@ -24,7 +24,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes //
 ////////////
 
+// Steam Web API
 
+app.get('/api/storesearch', async (req, res) => {
+    const term = req.query.term;
+
+    if (typeof term !== 'string' || !term.trim()) {
+        return res.status(400).json({error: 'No search term provided.'});
+    }
+
+    const params = new URLSearchParams({
+        term: term.trim(),
+        l: 'english',
+        cc: 'US'
+    });
+
+    try {
+        const steamResponse = await fetch(
+          `https://store.steampowered.com/api/storesearch/?${params}`
+        );
+
+        if (!steamResponse.ok) {
+            console.error(`Steam API returned ${steamResponse.status}`);
+            return res.status(502).json({error: 'Failed to fetch Steam search results.'});
+        }
+
+        const data = await steamResponse.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Failed to fetch Steam search:', error);
+        res.status(502).json({error: 'Failed to fetch Steam search results.'});
+    }
+});
 
 // Start the server
 app.listen(port, () => {
