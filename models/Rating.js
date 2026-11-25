@@ -19,6 +19,10 @@ const ratingSchema = new mongoose.Schema({
     },
     datePlayed: {
         type: Date
+    },
+    review: {
+        type: String,
+        trim: true
     }
 });
 

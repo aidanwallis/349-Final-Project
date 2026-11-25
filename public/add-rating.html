@@ -22,26 +22,34 @@
 
         <main>
             <br><br>
-            <form>
-                <label for="game">Game title</label>
-                <input type="text" id="game" name="game" required>
+            <form id="ratingForm" novalidate>
+                <label for="name">Game title</label>
+                <input type="text" id="name" name="name">
 
                 <label for="rating">Your rating (1-10)</label>
-                <input type="number" id="rating" name="rating" min="1" max="10" required>
+                <input type="number" id="rating" name="rating" min="1" max="10">
+
+                <br><br>
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre">
+
+                <label for="datePlayed">Date played</label>
+                <input type="date" id="datePlayed" name="datePlayed">
 
                 <br><br>
                 <label for="review">Review</label><br>
                 <textarea class="rating-textarea" id="review" name="review" maxlength="1000"></textarea>
-                
+
                 <br><br>
                 <button type="submit">Submit</button>
+                <p id="message"></p>
             </form>
         </main>
 
         <footer>
             
         </footer>
-
+    <script src="add-rating.js"></script>
     </body>
 
 
