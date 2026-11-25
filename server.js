@@ -52,6 +52,47 @@ app.get('/api/ratings/:id', async (req, res) => {
     }
 });
 
+// Create a new rating.
+app.post('/api/ratings', async (req, res) => {
+    try {
+        const newRating = await Rating.create(req.body);
+        res.status(201).json(newRating);
+    } catch (error) {
+        console.error('Failed to create rating:', error);
+        res.status(400).json({ error: 'Cannot create new rating' });
+    }
+});
+
+app.put('/api/ratings/:id', async (req, res) => {
+    try {
+        const updated = await Rating.findByIdAndUpdate(
+            req.params.id,                                 // which rating
+            req.body,                                 // the new values
+            { new: true, runValidators: true }
+        );
+        if (!updated) {
+            return res.status(404).json({ error: 'Cannot find id' });
+        }
+        res.json(updated);
+    } catch (error) {
+        console.error('Failed to update rating:', error);
+        res.status(400).json({ error: 'Cannot update rating' });
+    }
+});
+
+app.delete('/api/ratings/:id', async (req, res) => {
+    try {
+        const removed  = await Rating.findByIdAndDelete(req.params.id);
+        if (!removed) {
+            return res.status(404).json({ error: 'Cannot find id' });
+        }
+        res.status(200).json({ message: 'Rating Deleted'})
+    } catch (error) {
+        console.error('Failed to remove', error);
+        res.status(400).json({ error: 'Cannot remove' });
+    }
+});
+
 
 // Steam Web API
 
