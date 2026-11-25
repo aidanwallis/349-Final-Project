@@ -9,9 +9,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/gameRatingDB')
 // Test data for game ratings
 const gameRatings = [
     {name: 'Elden Ring', rating: 10, genre: 'Action RPG', datePlayed: '2026-10-11'},
-    {name: 'Valorant', rating: 7, genre: 'FPS', datePlayed: '2021-1-11'},
-    {name: 'Rust', rating: 9, genre: 'PvPvE', datePlayed: '2020-5-27'},
-    {name: 'GTA V', rating: 9, genre: 'Open World', datePlayed: '2018-3-5'}, 
+    {name: 'Valorant', rating: 7, genre: 'FPS', datePlayed: '2021-01-11'},
+    {name: 'Rust', rating: 9, genre: 'PvPvE', datePlayed: '2020-05-27'},
+    {name: 'GTA V', rating: 9, genre: 'Open World', datePlayed: '2018-03-05'}, 
 ];
 
 const populateData = async () => {
