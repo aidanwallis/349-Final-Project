@@ -16,7 +16,9 @@ app.use(express.json()); // To parse JSON request bodies
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB Connection
-
+mongoose.connect('mongodb://127.0.0.1:27017/gameRatingDB')
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Connection failed:', err));
 
 // Socket.IO integration
 
@@ -25,6 +27,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 ////////////
 // Routes //
 ////////////
+
+// Get every rating in the database.
+app.get('/api/ratings', async (req, res) => {
+    try {
+        const ratings = await Rating.find();
+        res.json(ratings);
+    } catch (error) {
+        console.error('Failed to get ratings:', error);
+        res.status(500).json({ error: 'Failed to get ratings' });
+    }
+});
+
+app.get('/api/ratings/:id', async (req, res) => {
+    try {
+        const rating = await Rating.findById(req.params.id);
+        if (!rating) {
+            return res.status(404).json({ error: 'Cannot find rating for id' });
+        }
+        res.json(rating);
+    } catch (error) {
+        console.error('Failed to get rating:', error);
+        res.status(400).json({ error: 'Cannot find id' });
+    }
+});
+
 
 // Steam Web API
 
