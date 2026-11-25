@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Rating = require('./models/Rating');
 
 // Connect to MongoDB 
-mongoose.connect('mongodb://localhost:27017/gameRatingDB')
+mongoose.connect('mongodb://127.0.0.1:27017/gameRatingDB')
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Connection failed:', err));
 
@@ -20,7 +20,7 @@ const populateData = async () => {
         const insertedRatings = await Rating.insertMany(gameRatings);
         console.log(`Inserted ${insertedRatings.length} ratings`);
         console.log('All data populated successfully');
-    } catch (error) {
+    } catch (err) {
         console.error('Error populating data:', err);
     } finally {
         mongoose.connection.close()
