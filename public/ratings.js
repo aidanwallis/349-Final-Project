@@ -11,7 +11,7 @@ async function loadRatings() {
             throw new Error(`HTTP Error ${response.status}`);
         }
         ratings = await response.json();
-        displayRatings(ratings);
+        sortSelect.dispatchEvent(new Event("change"));
     } catch (error) {
         console.error('Failed to load ratings:', error);
     }
@@ -67,3 +67,22 @@ function makeDetail(label, value) {
     p.appendChild(document.createTextNode(" " + value));
     return p;
 }
+
+
+// Re-sort the cards whenever the user picks a sort option.
+const sortSelect = document.getElementById("sortSelect");
+
+sortSelect.addEventListener("change", () => {
+    const sorted = ratings.slice();      // copy the array so the original stays untouched
+    const choice = sortSelect.value;     // "rating", "name", or "date"
+
+    if (choice === "rating") {
+        sorted.sort((a, b) => b.rating - a.rating);
+    } else if (choice === "name") {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (choice === "date") {
+        sorted.sort((a, b) => new Date(b.datePlayed) - new Date(a.datePlayed));
+    }
+
+    displayRatings(sorted);   // redraw the cards in the new order
+});
